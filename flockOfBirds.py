@@ -10,3 +10,4 @@ angles = 2*math.pi*np.random.rand(N)
 vel = np.array(list(zip(np.sin(angles), np.cos(angles))))
 plt.imshow(pos, interpolation='nearest')
 plt.show()
+#drawing the boids now 
