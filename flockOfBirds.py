@@ -1,6 +1,8 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.spatial.distance import squareform, pdist, cdist
+
 
 
 def boidPosition():
@@ -11,9 +13,12 @@ def boidPosition():
     angles = 2*math.pi*np.random.rand(N)
     vel = np.array(list(zip(np.sin(angles), np.cos(angles))))
 
+    
+
+
 
 def applyBoundries(pos):
-    testVal = []
+
     deltaR = 2.0
     
 
@@ -27,6 +32,8 @@ def applyBoundries(pos):
         if coords[1]  < - deltaR:
             coords[1] = height + deltaR
         
-
-
-
+def test2(pos , radius):
+    distMatrix = squareform(pdist(pos))
+    D = distMatrix < radius
+    vel= pos*D.sum(axis=1).reshape(N,1) - D.dot(pos)
+    return vel
