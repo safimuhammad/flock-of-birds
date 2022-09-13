@@ -37,3 +37,20 @@ def test2(pos , radius):
     D = distMatrix < radius
     vel= pos*D.sum(axis=1).reshape(N,1) - D.dot(pos)
     return vel
+
+
+def applyRules(self):
+    # rule#1 separation
+    D = distMatrix < 25.0
+    vel = self.pos*D.sum(axis=1).reshape(self.N,1) - D.dot(self.pos)
+    self.limit(vel, self.maxRuleVel)
+
+    # Rule#2 Alignment
+    vel2 = D.dot(self.vel)
+    self.limit(vel2,self.maxRuleVel)
+    vel += vel2 
+
+    # Rule#3 cohesion
+    vel3 = D.dot(self.pos) - self.pos
+    self.limit(vel3,self.maxRuleVel)
+    vel += vel3
