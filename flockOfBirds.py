@@ -54,3 +54,11 @@ def applyRules(self):
     vel3 = D.dot(self.pos) - self.pos
     self.limit(vel3,self.maxRuleVel)
     vel += vel3
+
+
+x= np.random.rand(2*10).reshape(10,2)
+y= 2*math.pi*np.random.rand(10)
+
+vel = np.array(list(zip(np.sin(y),np.cos(y))))
+
+print(vel)
