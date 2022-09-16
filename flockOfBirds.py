@@ -9,7 +9,7 @@ from numpy.linalg import norm
 
 
 
-width, height = 1920 , 1080
+width, height = 640,380
 
 class Boids:
     def __init__(self, N):
@@ -17,7 +17,7 @@ class Boids:
         angles = 2*math.pi*np.random.rand(N)
         self.vel = np.array(list(zip(np.sin(angles),np.cos(angles))))
         self.N = N
-        self.minDist = 25.0
+        self.minDist = 50.0
         self.maxRuleVel = 0.03
         self.maxVel = 2.0
     
@@ -88,6 +88,7 @@ def tick(frameNum,pts, beak,Boids):
 def main():
     print('starting boids......')
     print('building the ecosystem......')
+    print('calling the birds......')
 
     parser = argparse.ArgumentParser(description="Implementing Craig Reynold's Boids..")
 
@@ -105,7 +106,7 @@ def main():
 
     pts , = ax.plot([],[],markersize=10,c='k',marker='o',ls='None')
     beak, = ax.plot([],[],markersize=4,c='r',marker= 'o', ls='None')
-    anim = animation.FuncAnimation(fig, tick, fargs=(pts,beak,boids),interval=50)
+    anim = animation.FuncAnimation(fig, tick, fargs=(pts,beak,boids),interval=100)
 
     cid = fig.canvas.mpl_connect('button_press_event',boids.buttonPress)
 
