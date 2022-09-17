@@ -59,6 +59,7 @@ class Boids:
         # rule#1 separation
         D = self.distMatrix < 25.0
         vel = self.pos*D.sum(axis=1).reshape(self.N,1) - D.dot(self.pos)
+        print(self.pos,'pos')
         self.limit(vel, self.maxRuleVel)
         # Rule#2 Alignment
         vel2 = D.dot(self.vel)
